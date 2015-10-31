@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>HW Calculators</title>
+  <link rel="stylesheet" href="margin.css" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="margin.js"></script>
+</head>
+
+<body>
+  <table class="tg">
+    <tr>
+      <th class="tg-title">Channel</th>
+      <th class="tg-title">Cost</th>
+      <th class="tg-title">Margin %</th>
+      <th class="tg-title">Profit</th>
+    </tr>
+    <tr>
+      <td class="tg-title">Manufacturer</td>
+      <td class="tg-main">
+        <a>$</a><input id="manCost" type="number" min="0" step="1" value="0">
+      </td>
+      <td class="tg-main">
+        <input id="manPercent" type="number" min="0" step="1" value="0"><a>%</a>
+      </td>
+      <td <td class="tg-main">
+        <label id="manProfit">$0
+          <label>
+      </td>
+    </tr>
+    <tr>
+      <td class="tg-title">Distributor</td>
+      <td class="tg-main">
+        <label id="distroCost">0
+          <label>
+      </td>
+      <td class="tg-main">
+        <input id="distroPercent" type="number" min="0" step="1" value="0"><a>%</a>
+      </td>
+      <td <td class="tg-main">
+        <label id="distroProfit">$0
+          <label>
+      </td>
+    </tr>
+    <tr>
+      <td class="tg-title">Wholesaler</td>
+      <td <td class="tg-main">
+        <label id="wholeCost">0
+          <label>
+      </td>
+      <td class="tg-main">
+        <input id="wholePercent" type="number" min="0" step="1" value="0"><a>%</a>
+      </td>
+      <td <td class="tg-main">
+        <label id="wholeProfit">$0
+          <label>
+      </td>
+    </tr>
+    <tr>
+      <td class="tg-title">Retailer</td>
+      <td <td class="tg-main">
+        <label id="retailCost">0
+          <label>
+      </td>
+      <td class="tg-main">
+        <input id="retailPercent" type="number" min="0" step="1" value="0" name="retailper"><a>%</a>
+      </td>
+      <td <td class="tg-main">
+        <label id="retailProfit">$0
+          <label>
+      </td>
+    </tr>
+    <tr>
+      <td class="tg-title">Customer</td>
+      <td class="tg-customer">
+        <a>$</a><input id="customerInput" type="number" min="0" step="1" value="0">
+      </td>
+    </tr>
+  </table>
+  <p></p>
+  <a>*Margin % can only be 0-99 for now. Deal with it. My maths are weak.</a>
+  <p></p>
+  <a>**This is intended as a way to experiment with different scenarios, not to determine your price point. You should use a value driven formula for that :)</a>
+      
+    </body>
+</html>
