@@ -1,6 +1,3 @@
-var clamp = function(val, min, max) {
-    return Math.min(Math.max(val, min), max)
-}
 
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
@@ -37,14 +34,27 @@ $(document).ready(function () {
         
     //limit the margin percentages to 2 digits so we dont brake the maths.
     $(".percent").on("input", function () {
-        this.value = clamp(this.value, 0, 99)
+        // Note: this is a bit tortured, because we cannot assign this.value every time
+        // E.g. in the case where a user types a . to indicate fractions of a %, the .
+        // will only show up in value after a number is typed.  If we reassign
+        // value in this case, we blow away the . before the number can be typed.
+        if (this.value >= 99.99) {
+            this.value = 99.99
+        }
+        if (this.value <= 0) {
+            this.value = 0
+        }
+        if (this.value.indexOf(".") >= 0) {
+            // Limit to 2 decimal points, and round if needed
+            this.value = parseFloat(this.value).toFixed(2)
+        }
     });
     
     //start with when user enters a known manufacturers cost, cause thats what we are :)
     $("#manCost, #manPercent, #distroPercent, #wholePercent, #retailPercent").on("input", function () {
         //first convert the cost and margin percent into numbers.
         manuCost = parseInt($("#manCost").val(), 10);
-        manPercent = parseInt($("#manPercent").val(), 10);
+        manPercent = parseFloat($("#manPercent").val());
         
         //for the distro cost
         //to get the distro cost you use X = cost/(1-margin%)
@@ -67,7 +77,7 @@ $(document).ready(function () {
         
         //for the wholesale cost
         //you will need to convert the distro margin percent into a number
-        distroPercent = parseInt($("#distroPercent").val(), 10);
+        distroPercent = parseFloat($("#distroPercent").val());
         //to get the wholesale cost you use X = distrocost/(1-margin%)
         number = newNumber / (1 - (distroPercent / 100));
         //round the answer to decimal places
@@ -88,7 +98,7 @@ $(document).ready(function () {
         
         //for the retail cost
         //you will need to convert the wholesale margin percent into a number
-        wholePercent = parseInt($("#wholePercent").val(), 10);
+        wholePercent = parseFloat($("#wholePercent").val());
         //to get the retail cost you use X = wholesalecost/(1-margin%)
         number = newNumber / (1 - (wholePercent / 100));
         //round the answer to decimal places
@@ -109,7 +119,7 @@ $(document).ready(function () {
         
         //for the customer cost
         //you will need to convert the retail margin percent into a number
-        retailPercent = parseInt($("#retailPercent").val(), 10);
+        retailPercent = parseFloat($("#retailPercent").val());
         //to get the customer cost you use X = retailcost/(1-margin%)
         number = newNumber / (1 - (retailPercent / 100));
         //round the answer to decimal places
