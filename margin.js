@@ -1,3 +1,7 @@
+var clamp = function(val, min, max) {
+    return Math.min(Math.max(val, min), max)
+}
+
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 $(document).ready(function () {
@@ -32,10 +36,8 @@ $(document).ready(function () {
     //knowing this the formula become x=cost/(1-margin%)
         
     //limit the margin percentages to 2 digits so we dont brake the maths.
-    $("#manPercent, #distroPercent, #wholePercent, #retailPercent").on("input", function () {
-        if (this.value.length > 2) {
-            this.value = this.value.slice(0, 2);
-        }
+    $(".percent").on("input", function () {
+        this.value = clamp(this.value, 0, 99)
     });
     
     //start with when user enters a known manufacturers cost, cause thats what we are :)
